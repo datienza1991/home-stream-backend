@@ -26,9 +26,10 @@ describe('UsersController', () => {
   });
 
   it('should be getOne', () => {
+    const id = "1"
     const spy = jest.spyOn(mockService, 'findOne');
 
-    controller.getHello();
-    expect(spy).toHaveBeenCalledWith(2);
+    controller.getOne(id);
+    expect(spy).toHaveBeenCalledWith(parseInt(id));
   });
 });
