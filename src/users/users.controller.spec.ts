@@ -4,17 +4,18 @@ import { UsersService } from './users.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { User } from './user.entity';
 
-
-const mockRepository = {}
-const mockService = { findOne: jest.fn()}
+const mockRepository = {};
+const mockService = { findOne: jest.fn() };
 describe('UsersController', () => {
   let controller: UsersController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [UsersController],
-      providers: [{provide: UsersService, useValue: mockService},{provide: getRepositoryToken(User),
-        useValue: mockRepository,}]
+      providers: [
+        { provide: UsersService, useValue: mockService },
+        { provide: getRepositoryToken(User), useValue: mockRepository },
+      ],
     }).compile();
 
     controller = module.get<UsersController>(UsersController);
@@ -25,11 +26,10 @@ describe('UsersController', () => {
   });
 
   it('should be getOne', () => {
-    const spy = jest.spyOn(mockService,'findOne');
+    const id = "1"
+    const spy = jest.spyOn(mockService, 'findOne');
 
-    controller.getHello();
-    expect(spy).toHaveBeenCalledWith(2);
+    controller.getOne(id);
+    expect(spy).toHaveBeenCalledWith(parseInt(id));
   });
-
-
 });
