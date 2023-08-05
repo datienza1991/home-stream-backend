@@ -26,7 +26,7 @@ describe('UsersController', () => {
   });
 
   it('should be getOne', () => {
-    const id = "1"
+    const id = '1';
     const spy = jest.spyOn(mockService, 'findOne');
 
     controller.getOne(id);
