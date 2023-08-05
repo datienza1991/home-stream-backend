@@ -9,11 +9,11 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 const object = { id: 1 };
 describe('Users', () => {
   let app: INestApplication;
-  let usersService = {
+  const usersService = {
     findAll: async () => [{ id: 1 }],
     findOne: (id: number) => object,
   };
-  let mockUserRepo = {};
+  const mockUserRepo = {};
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [UsersModule],
