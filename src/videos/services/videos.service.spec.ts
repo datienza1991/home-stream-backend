@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { VideosService } from './videos.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Video } from '../model/video.entity';
+import { VideosService } from './videos.service';
 
 const fakeRepository = {
   find: jest.fn().mockResolvedValue([{ id: 1 }] as Video[]),
