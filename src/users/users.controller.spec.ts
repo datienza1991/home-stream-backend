@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UsersController } from './users.controller';
-import { UsersService } from './users.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { User } from './user.entity';
+import { UsersController } from './users.controller';
+import { UsersService } from './users.service';
 
 const mockRepository = {};
 const mockService = { findOne: jest.fn() };

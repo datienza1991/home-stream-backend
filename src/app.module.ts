@@ -1,23 +1,14 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './users/user.entity';
+import { dataSourceOptions } from './database/data-source';
 import { UsersModule } from './users/users.module';
 import { VideosModule } from './videos/videos.module';
-import { Video } from './videos/model/video.entity';
 
+const modules = [UsersModule, VideosModule];
 @Module({
-  imports: [
-    UsersModule,
-    TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: './.vs/test.db',
-      entities: [User, Video],
-      synchronize: true,
-    }),
-    VideosModule,
-  ],
+  imports: [...modules, TypeOrmModule.forRoot(dataSourceOptions)],
   controllers: [AppController],
   providers: [AppService],
 })
