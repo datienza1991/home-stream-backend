@@ -16,6 +16,8 @@ export class VideosController {
   public async findOne(
     @Param() params: VideoRouteParam,
   ): Promise<{ data: Video }> {
-    return { data: await this.videosService.findOne(params.id) };
+    return {
+      data: (await this.videosService.findOne(params.id)) ?? ({} as Video),
+    };
   }
 }
