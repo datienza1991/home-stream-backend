@@ -5,6 +5,7 @@ import { VideosService } from './videos.service';
 
 const fakeRepository = {
   find: jest.fn().mockResolvedValue([{ id: 1 }] as Video[]),
+  findOneBy: jest.fn().mockResolvedValue({}),
 };
 describe('VideosService', () => {
   let service: VideosService;
@@ -29,6 +30,14 @@ describe('VideosService', () => {
     const result = await service.findAll();
 
     expect(result).toHaveLength(1);
+    expect(find).toBeCalled();
+  });
+
+  it('should return one user', async () => {
+    const find = jest.spyOn(fakeRepository, 'findOneBy');
+    const result = await service.findOne(1);
+
+    expect(result).toStrictEqual({});
     expect(find).toBeCalled();
   });
 });
